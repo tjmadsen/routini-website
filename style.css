@@ -60,8 +60,10 @@ nav {
 }
 
 .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+    max-width: 28px;
+    max-height: 28px;
     object-fit: contain;
 }
 
@@ -167,6 +169,8 @@ nav {
 
 .app-screenshot {
     width: 100%;
+    max-width: 256px;
+    height: auto;
     border-radius: 28px;
     display: block;
 }
@@ -249,6 +253,13 @@ footer {
     align-items: center;
     gap: 0.5rem;
     font-weight: 600;
+}
+
+.footer-brand .logo-icon {
+    width: 24px;
+    height: 24px;
+    max-width: 24px;
+    max-height: 24px;
 }
 
 .footer-links {
