@@ -132,20 +132,12 @@
         function pickerCallback(data) {
             if (data.action === google.picker.Action.PICKED) {
                 const doc = data.docs[0];
-                const result = {
-                    id: doc.id,
-                    name: doc.name,
-                    mimeType: doc.mimeType
-                };
-                // Send result back to iOS
-                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.pickerResult) {
-                    window.webkit.messageHandlers.pickerResult.postMessage(JSON.stringify(result));
-                }
+                // Redirect to app using custom URL scheme
+                const encodedName = encodeURIComponent(doc.name);
+                window.location.href = 'routini://picker-result?id=' + doc.id + '&name=' + encodedName;
             } else if (data.action === google.picker.Action.CANCEL) {
-                // User cancelled
-                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.pickerResult) {
-                    window.webkit.messageHandlers.pickerResult.postMessage(JSON.stringify({ cancelled: true }));
-                }
+                // Redirect to app with cancelled flag
+                window.location.href = 'routini://picker-result?cancelled=true';
             }
         }
 
